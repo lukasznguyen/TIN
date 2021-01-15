@@ -1,0 +1,56 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Szczegóły serwisanta</h2>
+    <form class="formDetail">
+            <label for="firstName">Imię:<sup>*</sup></label>
+            <input type="text" name="firstName" value="Adam" id="firstName" disabled/>
+
+            <label for="lastName">Nazwisko:<sup>*</sup></label>
+            <input type="text" name="lastName" value="Adamowski" id="lastName" disabled/>
+
+
+            <label for="specjalizacja">Specjalizacja:<sup>*</sup></label>
+            <input type="text" name="specjalizacja" value="Telewizory" id="specjalizacja" disabled/>
+
+
+            <label for="dataZatrudnienia">Data zatrudnienia:<sup>*</sup></label>
+            <input type="date" name="dataZatrudnienia" value="01.03.2020" id="dataZatrudnienia" disabled/>
+
+        <div>
+            <p><a href="" class="details-button-edit">Edytuj</a></p>
+        </div>
+    </form>
+
+    <h2>Lista zleceń</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Nr zlecenia</th>
+            <th>Klient</th>
+            <th>Opis</th>
+            <th>Data</th>
+            <th>Koszt</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001</td>
+            <td>Jan Kowalski</td>
+            <td>Telewizor stłuczony</td>
+            <td>2020-08-15</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td>0121</td>
+            <td>Julia Nowak</td>
+            <td>Spalony telewizor</td>
+            <td>2020-10-20</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <p><a href="../../servicetechnicians" class="details-button-back">Powrót</a></p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,54 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Szczegóły klienta</h2>
+    <form class="formDetail">
+            <label for="firstName">Imię:<sup>*</sup></label>
+            <input type="text" name="firstName" value="Jan" id="firstName" disabled/>
+
+            <label for="lastName">Nazwisko:<sup>*</sup></label>
+            <input type="text" name="lastName" value="Kowalski" id="lastName" disabled/>
+
+            <label for="email">Email:<sup>*</sup></label>
+            <input type="email" name="email" value="jan.kowalski@poczta1.com" id="email" disabled/>
+
+            <label for="telefon">Numer telefonu:<sup>*</sup></label>
+            <input type="text" name="telefon" value="111222333" id="telefon" disabled/>
+        <div>
+            <p><a href="" class="details-button-edit">Edytuj</a></p>
+        </div>
+    </form>
+
+    <h2>Lista zleceń</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Nr zlecenia</th>
+            <th>Serwisant</th>
+            <th>Opis</th>
+            <th>Data</th>
+            <th>Koszt</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001</td>
+            <td>Adam Adamowski</td>
+            <td>Telewizor stłuczony</td>
+            <td>2020-08-15</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td>0002</td>
+            <td>Karol Karolowski</td>
+            <td>Telefon zalany sokiem</td>
+            <td>2020-10-20</td>
+            <td>null</td>
+        </tr>
+        <!-- Tu wstaw dodatkowe wiersze -->
+        </tbody>
+    </table>
+    <p><a href="../../clients" class="details-button-back">Powrót</a></p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

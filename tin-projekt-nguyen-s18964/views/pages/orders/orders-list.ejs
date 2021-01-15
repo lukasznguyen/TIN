@@ -1,0 +1,36 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Lista zleceń</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Nr zlecenia</th>
+            <th>Klient</th>
+            <th>Serwisant</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let o of myOrders) { %>
+        <tr>
+            <td><%= o._id %></td>
+            <td><%= o.client.firstName+" "+o.client.lastName %></td>
+            <td><%= o.serviceTechnician.firstName+" "+o.serviceTechnician.lastName %></td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="orders/details/<%=o._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                    <li><a href="orders/edit/<%=o._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                    <li><a href="orders/delete/<%=o._id%>" class="list-actions-button-delete">Usuń</a></li>
+                </ul>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+    <p><a href="/orders/add" class="button-add">Dodaj nowe zlecenie</a></p>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

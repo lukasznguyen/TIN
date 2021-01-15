@@ -1,0 +1,98 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationServiceTechnicianForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" novalidate >
+<!--    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();" >-->
+        <input type="hidden" name="_id" value="<%= myServiceTechnician._id%>">
+
+        <label for="firstName">Imię:<sup>*</sup></label>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= myServiceTechnician.firstName %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"/>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+        </span>
+
+        <label for="lastName">Nazwisko:<sup>*</sup></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= myServiceTechnician.lastName %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+        </span>
+
+        <label for="specialization">Specjalizacja:<sup>*</sup></label>
+        <input type="text" name="specialization" id="specialization" placeholder="2-60 znaków" value="<%= myServiceTechnician.specialization %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('specialization')) ? 'error-input' : '' %>"/>
+        <span id="errorSpecialization" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('specialization'))) { %>
+                <%= validationErrors.find(e => e.path.includes('specialization')).message %>
+            <% } %>
+        </span>
+
+        <label for="dateHire">Data zatrudnienia:<sup>*</sup></label>
+        <input type="date" name="dateHire" id="dateHire" value="<%= myServiceTechnician.dateHire%>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('dateHire')) ? 'error-input' : '' %>"/>
+        <span id="errorDataZatrudnienia" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dateHire'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dateHire')).message %>
+            <% } %>
+        </span>
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="form-buttons">
+                <p><a href="/servicetechnicians/edit/<%= myServiceTechnician._id %>" class="form-button-submit">Edytuj</a></p>
+            </div>
+        <% } %>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails' && formMode == 'createNew') { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+            <a class="form-button-cancel" href="/servicetechnicians">Powrót</a>
+            <% } else if(formMode == 'edit') { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+            <% } %>
+        </div>
+    </form>
+
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+        <h2>
+            Szczegóły zleceń
+        </h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Nr zlecenia</th>
+                <th>Klient</th>
+                <th>Opis</th>
+                <th>Data</th>
+                <th>Koszt</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let o of myServiceTechnician.orders) { %>
+                <tr>
+                    <td><a href="/orders/details/<%= o._id %>"><%= o._id %></a></td>
+                    <td><%= o.client.firstName+" "+o.client.lastName %></td>
+                    <td><%= o.description %></td>
+                    <td><%= o.dateOrder %></td>
+                    <td><%= o.cost %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <% if (formMode == 'edit') { %>
+        <p><a class="form-button-cancel" href="/clients">Anuluj</a></p>
+    <% } else if(formMode == 'showDetails') { %>
+        <p><a class="form-button-cancel" href="/clients">Powrót</a></p>
+    <% } %>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
